@@ -1,6 +1,6 @@
 <?php
     require 'config.php';
-    
+
     $msgContent = $_POST["message"];
     $msgTimestamp = $_POST["timestampp"];
 

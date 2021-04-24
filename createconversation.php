@@ -13,7 +13,7 @@
     integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk="
     crossorigin="anonymous"></script>
     <script src="js/index.js" defer></script>
-    <script src="js/chatglobal.js" defer></script>
+    <script src="js/createconversation.js" defer></script>
 </head>
 <body>
     <div id=container>
@@ -21,27 +21,28 @@
             <img src="img/logo.svg" alt="logo" id="logo">
             <nav>
                 <ul class="rowright">
-                    <li> <a href="index.html" class="currentpage"> Home </a></li>
+                    <li> <a href="index.html"> Home </a></li>
                     <li> <a href="profile.html"> Profile </a></li>
-                    <li> <a href="dm.php"> Direct messages </a></li>
+                    <li> <a href="dm.html"> Direct messages </a></li>
                     <li> <a href="about.html"> About </a></li>
                     <li> <a href="contact.html"> Contact </a></li>
                 </ul>
             </nav>
         </div>
         
-        <p> Chat global - SCHAT </p>
+
+        <input type="text" name="username" placeholder="Nume utizator" style="padding: 5px; margin-bottom: 10px;">
+        <div id="mesaj"></div>
         <div class="row" id="chatsections"> 
             <section id="chatsection">
-                Teo(moderator) : salutare tuturor
-               orem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsu
+                
             </section>
             <section id="chatsendsection">
-                <textarea>Your message here </textarea>
+                <textarea placeholder="Your message here"> </textarea>
                 <button> Send </button>
             </section>
         </div>
-      
+
         <footer> Copyright Silviu 2021 </footer>
     </div>  
 </body>

@@ -19,7 +19,7 @@ $("button").click(function(){
             message: $("textarea").val(),//punem mesajul scris in textarea 
             //incarcam data si ora la care a fost trimis 
             timestampp: new Date().toISOString().slice(0, 19).replace('T', ' ')
-        },
+        }
     );
 }); 
 

@@ -1,3 +1,11 @@
+<?php
+    require 'server/config.php';
+    //in loc de 3 in query o sa avem id-ul user-ului curent
+    $sql = "SELECT DISTINCT users.id,users.username from users inner 
+    JOIN direct_messages on users.id = direct_messages.userto WHERE direct_messages.userfrom = 3;";
+    $result = mysqli_query($conn,$sql);//avem nevoie de lsita de id-uri la care a dat mesaj user-ul curent
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -34,10 +42,14 @@
         <div class="column row" id=chatsections> 
             <h1> Direct messages </h1>
             <section>
-                <div class="conversation"> <a href=conversation.html> User1 </a> </div>
-                <div class="conversation"> <a href=conversation.html> User2 </a> </div>
-                <div class="conversation"> <a href=conversation.html> User3 </a> </div>
+                <?php
+                    while ($row = mysqli_fetch_assoc($result)) {
+                        echo "<div class='conversation'> <a href=conversation.php/?userto=".$row["id"].">". $row["username"] ." </a> </div>";
+                    }
+                ?>
             </section>
+
+            <button id="createdm"> Add conversation </button>
         </div>
       
         <footer> Copyright Silviu 2021 </footer>

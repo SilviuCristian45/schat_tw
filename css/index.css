@@ -74,6 +74,10 @@ footer{
     border-radius: 30px;
 }
 
+#ss{
+    display: none;
+}
+
 /*Ajustari pentru mobile (maxim 360px pe width)*/
 @media only screen and (max-width: 594px) {
     /* Sectiunea pt chat si texbox + buton */

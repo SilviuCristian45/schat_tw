@@ -72,3 +72,8 @@ $("a").click(function(e){
 $(document).ready(function () {
     $("body").fadeIn("fast");
 });
+
+//cand se da click pe butonul pentru crearea unei conversatii
+$("#createdm").click(function(){
+    window.location = "createconversation.html";
+});

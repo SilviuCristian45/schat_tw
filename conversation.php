@@ -1,3 +1,7 @@
+<?php
+    $userto = $_GET["userto"];
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -7,12 +11,13 @@
     <title>SCHAT</title>
     <link rel="preconnect" href="https://fonts.gstatic.com">
     <link href="https://fonts.googleapis.com/css2?family=New+Tegomin&display=swap" rel="stylesheet"> 
-    <link rel="stylesheet" href="css/index.css">
+    <link rel="stylesheet" href="../css/index.css" type="text/css">
     <script
     src="https://code.jquery.com/jquery-3.6.0.js"
     integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk="
     crossorigin="anonymous"></script>
-    <script src="js/index.js" defer></script>
+    <script src="../js/index.js" defer></script>
+    <script src="../js/dm.js"  defer></script>
 </head>
 <body>
     <div id=container>
@@ -30,11 +35,9 @@
         </div>
         
         <p> Chat direct - User1 </p>
+        <p id="ss">  <?php echo $userto; ?> </p>
         <div class="row" id="chatsections"> 
-            <section id="chatsection">
-                Teo(moderator) : salutare tuturor
-                orem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsu
-            </section>
+            <section id="chatsection"></section>
             <section id="chatsendsection">
                 <textarea>Your message here </textarea>
                 <button> Send </button>
