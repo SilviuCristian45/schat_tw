@@ -40,7 +40,7 @@
             <section id="chatsection"></section>
             <section id="chatsendsection">
                 <textarea>Your message here </textarea>
-                <button> Send </button>
+                <button id="sendbtn"> Send </button>
             </section>
         </div>
       

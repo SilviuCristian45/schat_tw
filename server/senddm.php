@@ -5,9 +5,10 @@
     $msgContent = $_POST["message"];
     $msgTimestamp = $_POST["timestampp"];
 
-    $iduserto = getidRecord($conn , "users" , "username" , $msgUser) or die("Acest utilizator nu exista pe chat. ");
+    if((int)$msgUser == 0) //daca mi se transmite un nume in loc de id pt user-ul la care se trimite dm-ul
+        $msgUser = getidRecord($conn , "users" , "username" , $msgUser) or die("Acest utilizator nu exista pe chat. ");
     //luam id-ul userului cu numele dat in formular 
-    $sql = "INSERT INTO `direct_messages`(`userfrom`, `userto`, `timestampp`, `content`) VALUES (1,'$iduserto','$msgTimestamp','$msgContent')";
+    $sql = "INSERT INTO `direct_messages`(`userfrom`, `userto`, `timestampp`, `content`) VALUES (3,'$msgUser','$msgTimestamp','$msgContent')";
     try {
         mysqli_query($conn, $sql);
     } catch (Exception $th) {
