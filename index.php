@@ -1,3 +1,10 @@
+<?php
+    session_start();
+    //daca user-ul nu e logat # trebuie redirectat pe login.html
+    if ( !isset($_SESSION["userid"]) )
+        header("Location:login.html");
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -21,7 +28,7 @@
             <img src="img/logo.svg" alt="logo" id="logo">
             <nav>
                 <ul class="rowright">
-                    <li> <a href="index.html" class="currentpage"> Home </a></li>
+                    <li> <a href="index.php" class="currentpage"> Home </a></li>
                     <li> <a href="profile.html"> Profile </a></li>
                     <li> <a href="dm.php"> Direct messages </a></li>
                     <li> <a href="about.html"> About </a></li>
@@ -31,6 +38,7 @@
         </div>
         
         <p> Chat global - SCHAT </p>
+        <p> Bun venit pe chat, draga <?php echo $_SESSION["userid"]; ?> </p>
         <div class="row" id="chatsections"> 
             <section id="chatsection">
                 Teo(moderator) : salutare tuturor

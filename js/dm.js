@@ -1,4 +1,5 @@
-/* Script pt. care */
+/* In acest script ma ocup de trimiterea unui dm si update-ul casutei de dm corespunzatoare unui user*/
+
 let userto = document.getElementById("ss").innerText;
 console.log(userto);
 

@@ -1,5 +1,11 @@
+<!--  In aceasta pagina ma ocup de display-ul conversatiei userului curent cu un anumit user -->
+
 <?php
+    require "server/config.php";
     $userto = $_GET["userto"];
+
+    $sql = "SELECT username from users where id = ".$userto;
+    $result = mysqli_fetch_assoc(mysqli_query($conn, $sql));
 ?>
 
 <!DOCTYPE html>
@@ -34,7 +40,7 @@
             </nav>
         </div>
         
-        <p> Chat direct - User1 </p>
+        <p> Chat direct - <?php echo $result["username"]; ?> </p>
         <p id="ss">  <?php echo $userto; ?> </p>
         <div class="row" id="chatsections"> 
             <section id="chatsection"></section>

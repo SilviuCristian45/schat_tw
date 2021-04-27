@@ -1,12 +1,3 @@
-<?php
-    require 'server/config.php';
-    session_start();
-    //in loc de 3 in query o sa avem id-ul user-ului curent
-    $sql = "SELECT DISTINCT users.id,users.username from users inner 
-    JOIN direct_messages on users.id = direct_messages.userto WHERE direct_messages.userfrom =". $_SESSION["userid"] .";";
-    $result = mysqli_query($conn,$sql);//avem nevoie de lsita de id-uri la care a dat mesaj user-ul curent
-?>
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -18,7 +9,7 @@
     <link href="https://fonts.googleapis.com/css2?family=New+Tegomin&display=swap" rel="stylesheet"> 
     <link rel="stylesheet" href="css/index.css">
     <link rel="stylesheet" href="css/profile.css">
-    <link rel="stylesheet" href="css/dm.css">
+
     <script
     src="https://code.jquery.com/jquery-3.6.0.js"
     integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk="
@@ -31,26 +22,32 @@
             <img src="img/logo.svg" alt="logo" id="logo">
             <nav>
                 <ul class="rowright">
-                    <li> <a href="index.php"> Home </a></li>
+                    <li> <a href="index.php" class="currentpage"> Home </a></li>
                     <li> <a href="profile.html"> Profile </a></li>
-                    <li> <a href="dm.php" class="currentpage"> Direct messages </a></li>
+                    <li> <a href="dm.php"> Direct messages </a></li>
                     <li> <a href="about.html"> About </a></li>
                     <li> <a href="contact.html"> Contact </a></li>
                 </ul>
             </nav>
         </div>
         
+        
         <div class="column row" id=chatsections> 
-            <h1> Direct messages </h1>
+            <p> Register </p>
             <section>
-                <?php
-                    while ($row = mysqli_fetch_assoc($result)) {
-                        echo "<div class='conversation'> <a href=conversation.php/?userto=".$row["id"].">". $row["username"] ." </a> </div>";
-                    }
-                ?>
-            </section>
+               <form action="server/register.php" method="post">
+                   
+                    <div class="row" style="padding: 10px;">
+                        <label for="username"> Username </label> <input type="text" name="username">
+                   </div>
 
-            <button id="createdm"> Add conversation </button>
+                   <div class="row" style="padding: 10px;">
+                        <label for="password"> Password </label> <input type="text" name="password">
+                    </div>
+
+                    <p> <input type="submit" value="Inregistreaza-te"> </p>
+               </form>
+            </section>
         </div>
       
         <footer> Copyright Silviu 2021 </footer>
