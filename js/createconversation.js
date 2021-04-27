@@ -11,4 +11,6 @@ $("button").click(function(){
     ,function (data) {
         $("#mesaj").text(data);
     });
+
+    $("button").prop('disabled',true);//facem butonul disabled 
 }); 

@@ -13,6 +13,7 @@
     $sql = "INSERT INTO `direct_messages`(`userfrom`, `userto`, `timestampp`, `content`) VALUES ('$currentUser','$msgUser','$msgTimestamp','$msgContent')";
     try {
         mysqli_query($conn, $sql);
+        echo "Conversatie creata cu succes. Click pe sectiunea direct messages pentru a deschide conversatia";
     } catch (Exception $th) {
         echo $th;
     }

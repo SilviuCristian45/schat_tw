@@ -75,5 +75,5 @@ $(document).ready(function () {
 
 //cand se da click pe butonul pentru crearea unei conversatii
 $("#createdm").click(function(){
-    window.location = "createconversation.html";
+    window.location = "createconversation.php";
 });

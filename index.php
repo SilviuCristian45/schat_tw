@@ -1,8 +1,13 @@
 <?php
     session_start();
-    //daca user-ul nu e logat # trebuie redirectat pe login.html
-    if ( !isset($_SESSION["userid"]) )
+    if ( !isset($_SESSION["userid"]) ){//daca user-ul nu e logat # trebuie redirectat pe login.html
         header("Location:login.html");
+    }
+    else{
+        require 'server/config.php';
+        $sql = "SELECT username from users where users.id = ".$_SESSION["userid"];
+        $result = mysqli_fetch_assoc(mysqli_query($conn, $sql));
+    }
 ?>
 
 <!DOCTYPE html>
@@ -38,7 +43,7 @@
         </div>
         
         <p> Chat global - SCHAT </p>
-        <p> Bun venit pe chat, draga <?php echo $_SESSION["userid"]; ?> </p>
+        <p> Bun venit pe chat, draga <?php echo '<b>'.$result["username"].'</b>'; ?> </p>
         <div class="row" id="chatsections"> 
             <section id="chatsection">
                 Teo(moderator) : salutare tuturor
