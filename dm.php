@@ -11,9 +11,11 @@
         $sql = "SELECT DISTINCT users.id,users.username from users inner 
         JOIN direct_messages on users.id = direct_messages.userto WHERE  direct_messages.userfrom =". $_SESSION["userid"];
 
-        //selectam userii care i-au trimis un mesaj la userul curent
+        //selectam userii care i-au trimis un mesaj la userul curent si stergem din lista pe cei la care
+        //i-a trimis si el mesaj . ca sa nu ne apara acelasi conversation box de 2 ori
         $sql2 = "SELECT DISTINCT users.id,users.username from users inner 
-        JOIN direct_messages on users.id = direct_messages.userfrom WHERE  direct_messages.userto =". $_SESSION["userid"];
+        JOIN direct_messages on users.id = direct_messages.userfrom WHERE  direct_messages.userto =". $_SESSION["userid"] .
+        " except (" . $sql . ")";
 
         $result = mysqli_query($conn, $sql);//avem nevoie de lsita de id-uri la care a dat mesaj user-ul curent
         $result2 = mysqli_query($conn, $sql2);
