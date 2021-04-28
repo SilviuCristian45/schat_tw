@@ -3,7 +3,7 @@ let row1 = document.getElementById('row1');//first row in my website
 let sections = document.getElementById('chatsections');
 
 let button_state = false;//check if the button is displayed 
-let button = CreateCustomButton('../img/button.svg','60px','60px','12px',row1);
+let button = CreateCustomButton('img/button.svg','60px','60px','12px',row1);
 let navbarMobile = CreateMobileNavbar();
 
 window.onresize = ManageNavBarButton;//manage-uim butonul si navbarmobile-ul si la resize (pt debug)

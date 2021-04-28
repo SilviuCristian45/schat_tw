@@ -1,3 +1,9 @@
+<?php
+    session_start();
+    if ( !isset($_SESSION["userid"]) )//daca user-ul nu e logat # trebuie redirectat pe login.html
+        header("Location:login.html");
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -22,7 +28,7 @@
             <nav>
                 <ul class="rowright">
                     <li> <a href="index.php" > Home </a></li>
-                    <li> <a href="profile.html" class="currentpage"> Profile </a></li>
+                    <li> <a href="profile.php" class="currentpage"> Profile </a></li>
                     <li> <a href="dm.php"> Direct messages </a></li>
                     <li> <a href="about.html"> About </a></li>
                     <li> <a href="contact.html"> Contact </a></li>

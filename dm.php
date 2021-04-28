@@ -1,10 +1,23 @@
 <?php
     require 'server/config.php';
     session_start();
-    //in loc de 3 in query o sa avem id-ul user-ului curent
-    $sql = "SELECT DISTINCT users.id,users.username from users inner 
-    JOIN direct_messages on users.id = direct_messages.userto WHERE direct_messages.userfrom =". $_SESSION["userid"] .";";
-    $result = mysqli_query($conn,$sql);//avem nevoie de lsita de id-uri la care a dat mesaj user-ul curent
+
+    if (!isset($_SESSION["userid"])) {//daca nu suntem logati nu putem vedea lista de conversatii 
+        header("Location:login.html");
+    }
+    else {
+        
+        //selectam pe userii la care a trimis user-ul curent macar un mesaj
+        $sql = "SELECT DISTINCT users.id,users.username from users inner 
+        JOIN direct_messages on users.id = direct_messages.userto WHERE  direct_messages.userfrom =". $_SESSION["userid"];
+
+        //selectam userii care i-au trimis un mesaj la userul curent
+        $sql2 = "SELECT DISTINCT users.id,users.username from users inner 
+        JOIN direct_messages on users.id = direct_messages.userfrom WHERE  direct_messages.userto =". $_SESSION["userid"];
+
+        $result = mysqli_query($conn, $sql);//avem nevoie de lsita de id-uri la care a dat mesaj user-ul curent
+        $result2 = mysqli_query($conn, $sql2);
+    }
 ?>
 
 <!DOCTYPE html>
@@ -32,7 +45,7 @@
             <nav>
                 <ul class="rowright">
                     <li> <a href="index.php"> Home </a></li>
-                    <li> <a href="profile.html"> Profile </a></li>
+                    <li> <a href="profile.php"> Profile </a></li>
                     <li> <a href="dm.php" class="currentpage"> Direct messages </a></li>
                     <li> <a href="about.html"> About </a></li>
                     <li> <a href="contact.html"> Contact </a></li>
@@ -45,6 +58,9 @@
             <section>
                 <?php
                     while ($row = mysqli_fetch_assoc($result)) {
+                        echo "<div class='conversation'> <a href=conversation.php/?userto=".$row["id"].">". $row["username"] ." </a> </div>";
+                    }
+                    while ($row = mysqli_fetch_assoc($result2)) {
                         echo "<div class='conversation'> <a href=conversation.php/?userto=".$row["id"].">". $row["username"] ." </a> </div>";
                     }
                 ?>
