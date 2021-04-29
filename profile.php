@@ -2,6 +2,11 @@
     session_start();
     if ( !isset($_SESSION["userid"]) )//daca user-ul nu e logat # trebuie redirectat pe login.html
         header("Location:login.html");
+    else {
+        require 'server/config.php';
+        $sql = "SELECT * from users WHERE users.id = " . $_SESSION["userid"];
+        $result = mysqli_fetch_assoc(mysqli_query($conn, $sql));
+    }
 ?>
 
 <!DOCTYPE html>
@@ -40,7 +45,14 @@
         <div class="column row" id=chatsections> 
             <p> Profile </p>
             <section>
-                Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.
+                <?php
+                    echo "<p> <b> Nume de utilizator </b> : " . $result["username"] . "</p>";
+                    echo "<p> <b> Parola : </b>" . $result["password"] . "</p>";
+                    //echo "<p>" . $result["idgrad"] . "</p>"; nu afisez gradul 
+                    $sql = "SELECT * FROM ranks WHERE ranks.id = " . $result["idgrad"] ;
+                    $result = mysqli_fetch_assoc( mysqli_query($conn, $sql) );
+                    echo "<p> <b> Grad pe SCHAT : </b> " . $result["name"] . "</p>";
+                ?>
             </section>
         </div>
       
