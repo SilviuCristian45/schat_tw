@@ -50,7 +50,7 @@
                     <li> <a href="profile.php"> Profile </a></li>
                     <li> <a href="dm.php" class="currentpage"> Direct messages </a></li>
                     <li> <a href="about.html"> About </a></li>
-                    <li> <a href="contact.html"> Contact </a></li>
+                    <li> <a href="contact.php"> Contact </a></li>
                 </ul>
             </nav>
         </div>

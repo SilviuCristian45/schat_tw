@@ -27,7 +27,7 @@
                     <li> <a href="profile.php"> Profile </a></li>
                     <li> <a href="dm.php"> Direct messages </a></li>
                     <li> <a href="about.html"> About </a></li>
-                    <li> <a href="contact.html" class="currentpage"> Contact </a></li>
+                    <li> <a href="contact.php" class="currentpage"> Contact </a></li>
                 </ul>
             </nav>
         </div>
@@ -35,13 +35,22 @@
         
         <div class="column row" id=chatsections> 
             <h1> Contact us </h1>
+            <p>
+                <?php
+                    if (isset($_COOKIE["mesajcontact"])) {
+                        echo $_COOKIE["mesajcontact"];
+                        //stergem cookie-ul ca sa nu mai fie afisat mereu 
+                        setcookie("mesajcontact", "", time() - 3600,"/");
+                    }
+                ?>
+            </p>
             <section>
-                <form action="" method="post">
+                <form action="server/contact.php" method="post">
                     <div class="formrow">
-                        <label> Email-ul dvs</label> <input type="text" name="email">
+                        <label> Email-ul dvs</label> <input type="email" name="email">
                     </div>
                     <div class="formrow">
-                        <label> Problema dumneavoastra </label> <textarea> </textarea>
+                        <label> Problema dumneavoastra </label> <textarea name="problem"> </textarea>
                     </div>
                     <div class="formrow">
                         <button type="submit"> Trimite </button>
