@@ -13,8 +13,8 @@
     while ($row = mysqli_fetch_assoc($result)) {
         echo "<p> " . $row["timestampp"] . " ";
         if ($row["userfrom"] == $_SESSION["userid"]) //in loc de 3 va trebui sa fie id-ul userului curent
-            echo "(tu) : ";
+            echo "<b> (tu) : ";
         else echo "(el/ea) : ";
-        echo $row["content"] . "</p>";
+        echo $row["content"] . "</b> </p>";
     }
 ?>

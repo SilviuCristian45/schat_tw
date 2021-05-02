@@ -14,12 +14,23 @@ setInterval( () => {
 
 //request la click pe butonul send prin care inseram mesajul in baza de date 
 $("button").click(function(){
-    $.post("server/sendmessage.php",//exact ca metoda de mai sus dar cu jquery
-        {
-            message: $("textarea").val(),//punem mesajul scris in textarea 
-            //incarcam data si ora la care a fost trimis 
-            timestampp: new Date().toISOString().slice(0, 19).replace('T', ' ')
-        }
-    );
+    let dataToSend = new FormData();
+    let imageData = $("#imagefile").prop('files')[0];
+
+    //completez formularul "imaginar"
+    dataToSend.append('message', $("textarea").val() );
+    dataToSend.append('timestampp', new Date().toISOString().slice(0, 19).replace('T', ' '));
+    dataToSend.append('fileToUpload', imageData);
+
+    //trimitem request-ul 
+    $.ajax({
+        url: 'server/sendmessage.php', // point to server-side PHP script 
+        cache: false,
+        contentType: false,
+        processData: false,
+        data: dataToSend,                         
+        type: 'post'
+     });
+
 }); 
 

@@ -51,8 +51,12 @@
             </section>
             <section id="chatsendsection">
                 <textarea>Your message here </textarea>
-                <button> Send </button>
+                <div id="sendsection">
+                    <button> Send </button>
+                    <input type="file" id="imagefile">
+                </div>
             </section>
+            
         </div>
       
         <footer> Copyright Silviu 2021 </footer>

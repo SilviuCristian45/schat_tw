@@ -53,7 +53,7 @@
                         <label> Problema dumneavoastra </label> <textarea name="problem"> </textarea>
                     </div>
                     <div class="formrow">
-                        <button type="submit"> Trimite </button>
+                        <input type="submit" value="Trimite"> 
                     </div>
                 </form>
             </section>
