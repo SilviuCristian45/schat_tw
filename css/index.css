@@ -63,6 +63,7 @@ send*/
 #chatsendsection textarea{
     height: 400px;
     font-size: 1.5em;
+    resize: none;
 }
 
 /*Inputul pt a trimite mesaje*/

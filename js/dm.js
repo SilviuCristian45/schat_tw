@@ -17,20 +17,31 @@ setInterval(() => {
 
 $("#sendbtn").click(function () { 
     console.log("click click");
-    $.post("../server/senddm.php",//exact ca metoda de mai sus dar cu jquery
-        {
-            message: $("textarea").val(),//punem mesajul scris in textarea 
-            //incarcam data si ora la care a fost trimis 
-            timestampp: new Date().toISOString().slice(0, 19).replace('T', ' '),
-            new_user: userto
-        }
-    ,function (data) {
-        //$("#mesaj").text(data);//punem in pagina raspunsul de la server
-        $("textarea").val("");//golim textarea-ul
 
-        document.querySelector("#sendbtn").disabled = true;//disable la buton pt 2 secunde ca sa nu se faca spam
-        setTimeout( () => {
-             document.querySelector("#sendbtn").disabled = false;//peste 2 sec. dam enable la buton
-        }, 2000);
-    });
+    let dataToSend = new FormData();
+    let imageData = $("#imagefile").prop('files')[0];
+
+    //completez formularul "imaginar"
+    dataToSend.append('message', $("textarea").val() );
+    dataToSend.append('timestampp', new Date().toISOString().slice(0, 19).replace('T', ' '));
+    dataToSend.append('fileToUpload', imageData);
+    dataToSend.append('new_user', userto);
+
+    //trimitem request-ul 
+    $.ajax({
+        url: '../server/senddm.php', // point to server-side PHP script 
+        cache: false,
+        contentType: false,
+        processData: false,
+        data: dataToSend,                         
+        type: 'post',
+        succes: function(){
+            $("textarea").val("");//golim textarea-ul
+            document.querySelector("#sendbtn").disabled = true;//disable la buton pt 2 secunde ca sa nu se faca spam
+            setTimeout( () => {
+                document.querySelector("#sendbtn").disabled = false;//peste 2 sec. dam enable la buton
+            }, 2000);
+        }
+     });
+
 });

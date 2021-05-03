@@ -46,7 +46,10 @@
             <section id="chatsection"></section>
             <section id="chatsendsection">
                 <textarea>Your message here </textarea>
-                <button id="sendbtn"> Send </button>
+                <div id="sendsection">
+                    <button id="sendbtn"> Send </button>
+                    <input type="file" id="imagefile">
+                </div>
             </section>
         </div>
       
