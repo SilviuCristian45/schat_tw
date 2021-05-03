@@ -5,9 +5,10 @@
     $currentUser = $_SESSION["userid"]; //stochez id-ul userului din sesiuena curenta
     $msgContent = $_POST["message"];    //stochez mesajul text
     $msgTimestamp = $_POST["timestampp"];   //stochez timestamp-ul la care s-a trimis mesajul
-    $image = $_FILES["fileToUpload"]["name"];   //stochez ce a uploadat user-ul 
+    
 
-    if (isset($image)) {//daca s-a incarcat o imagine
+    if ( isset($_FILES["fileToUpload"]["name"]) ) {//daca s-a incarcat o imagine
+        $image = $_FILES["fileToUpload"]["name"];   //stochez ce a uploadat user-ul  
         $filefolder = '../uploads/';   //stochez path-ul folder-ului unde incarc fisierul
         $tmpfilename = $_FILES["fileToUpload"]["tmp_name"];     //fisierul inainte de upload va fi mutat intr-un folder temporar
         $filesize = $_FILES["fileToUpload"]["size"];    //marimea in bytes
@@ -29,4 +30,6 @@
     } catch (Exception $th) {
         echo $th;
     }
+
+    echo "1";
 ?>

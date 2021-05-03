@@ -57,7 +57,7 @@
             <section id="chatsendsection">
                 <textarea> Your message here </textarea>
                 <div id="sendsection">
-                    <button> Send </button>
+                    <button id="sendGlobalChat"> Send </button>
                     <input type="file" id="imagefile">
                 </div>
             </section>

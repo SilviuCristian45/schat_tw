@@ -3,7 +3,7 @@
 let userto = document.getElementById("ss").innerText;
 console.log(userto);
 
-setInterval(() => {
+setInterval( () => {
     console.log(userto);
     $.get("../server/dm.php",{
             userto:userto
@@ -12,7 +12,6 @@ setInterval(() => {
             $("#chatsection").html(data);
         }
     ); 
-    //document.getElementById("chatsection").scrollTop = document.getElementById("chatsection").scrollHeight;
 }, 5000);
 
 $("#sendbtn").click(function () { 

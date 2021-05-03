@@ -13,13 +13,14 @@ setInterval( () => {
 } , 5000)
 
 //request la click pe butonul send prin care inseram mesajul in baza de date 
-$("button").click(function(){
+$("#sendGlobalChat").click(function(){
+    console.log("mesaj trimis pe global chat");
     let dataToSend = new FormData();
     let imageData = $("#imagefile").prop('files')[0];
 
     //completez formularul "imaginar"
     dataToSend.append('message', $("textarea").val() );
-    dataToSend.append('timestampp', new Date().toISOString().slice(0, 19).replace('T', ' '));
+    dataToSend.append('timestampp', new Date().toISOString().slice(0, 19).replace('T', ' ') );
     dataToSend.append('fileToUpload', imageData);
 
     //trimitem request-ul 
@@ -28,9 +29,18 @@ $("button").click(function(){
         cache: false,
         contentType: false,
         processData: false,
-        data: dataToSend,                         
-        type: 'post'
+        data: dataToSend,                       
+        type: 'post',
+        statusCode: {//a mers asa , nu mergea cu succes 
+            200: function (data) {
+                $("textarea").val("");
+                document.querySelector('#sendGlobalChat').disabled = true;
+                console.log("trebuie dat disable la buton");
+                setTimeout( () => {
+                    document.querySelector('#sendGlobalChat').disabled = false;
+                }, 3000); 
+            }
+        }
      });
 
 }); 
-
