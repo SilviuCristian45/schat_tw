@@ -59,13 +59,13 @@ function DisplayNavbarMobile() {
 
 //tranzitii cu jquery intre pagini 
 $("a").click(function(e){
-    e.preventDefault();//oprim comportamentul default la click-ul pe link
-    let link =  $(this).attr('href');
-
-    $("body").fadeOut("fast" , function() {//facem tot body-ul invisible
-        console.log("fade out complete");//pe urma trecem la link 
-        window.location = link;
-    });  
+    // e.preventDefault();//oprim comportamentul default la click-ul pe link
+    // let link =  $(this).attr('href');
+    // console.log(link);
+    // $("body").fadeOut("fast" , function() {//facem tot body-ul invisible
+    //     console.log("fade out complete");//pe urma trecem la link 
+    //     window.location = link;
+    // });  
 });
 
 //cand se incarca orice pagina avem un fade in pe body 

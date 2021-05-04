@@ -1,0 +1,11 @@
+table {
+    border: 1px solid black;
+    border-radius: 4px;
+}
+tr:nth-child(even) {
+    background: #CCC;
+}
+
+th,td{
+    border:1px solid black;
+}
