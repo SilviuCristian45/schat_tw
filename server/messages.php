@@ -10,9 +10,15 @@
             $contentMsg = strtolower($row["content"]);//stochez cu litere mici valoarea curenta
             //stochez in variabila isImage daca e path de imagine 
             $isImage = strpos($contentMsg, ".jpg") || strpos($contentMsg, ".png") || strpos($contentMsg, ".jpeg");
-
+            $isVideo = strpos($contentMsg, ".m4v") || strpos($contentMsg, ".mp4");
             if ($isImage) {//daca e path-ul catre o poza (deci daca contine jpg sau jpeg sau png)
                 echo "<p>" . $row["username"] . " <img src=uploads/". $row["content"]. " width=100 height=100>  </p>";
+            }
+            if ($isVideo) {
+                $videoContent = "<video width=300 height=200 controls>
+                    <source src=uploads/".$row["content"].">
+                </video>";
+                echo "<p>" . $row["username"] . " '$videoContent' .  </p>";
             }
 
             if ($row["idgrad"] == 2) //mesaj trimis de moderator

@@ -1,11 +1,23 @@
 let chatbox = document.getElementById("chatsection"); 
 
+Object.defineProperty(HTMLMediaElement.prototype, 'playing', {
+    get: function(){
+        return !!(this.currentTime > 0 && !this.paused && !this.ended && this.readyState > 2);
+    }
+})
+
 //repetam acest request la fiecare 5 secunde si luam asincron din baza de date mesajele 
 setInterval( () => {
     let xhttp = new XMLHttpRequest();
     xhttp.onreadystatechange = function() {//la terminarea request-ului asignam functia aceasta
         if (this.readyState == 4 && this.status == 200) {//daca avem ok-ul de la server ca s-a primit request-ul
-            chatbox.innerHTML = this.response;//punem raspunsul (lista de mesaje) in chatbox
+            let video = document.querySelector("video") ?? undefined;
+            if(video){//daca avem clipuri in pagina
+                if (!video.playing)//daca nu se da play la ele 
+                    chatbox.innerHTML = this.response;//punem raspunsul (lista de mesaje) in chatbox
+            }
+            else//daca nu avem clipuri in pagina logic ca facem update la content 
+                chatbox.innerHTML = this.response;
         }
     };
     xhttp.open("GET", "server/messages.php", true);//deschidem request-ul 

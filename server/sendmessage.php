@@ -7,7 +7,7 @@
     $msgTimestamp = $_POST["timestampp"];   //stochez timestamp-ul la care s-a trimis mesajul
     
 
-    if ( isset($_FILES["fileToUpload"]["name"]) ) {//daca s-a incarcat o imagine
+    if ( isset($_FILES["fileToUpload"]["name"]) ) {//daca s-a incarcat o imagine sau un clip
         $image = $_FILES["fileToUpload"]["name"];   //stochez ce a uploadat user-ul  
         $filefolder = '../uploads/';   //stochez path-ul folder-ului unde incarc fisierul
         $tmpfilename = $_FILES["fileToUpload"]["tmp_name"];     //fisierul inainte de upload va fi mutat intr-un folder temporar
@@ -15,11 +15,11 @@
 
         //aici trebuie facute niste validari
         $upload = 1;// pp ca putem sa uploadam poza pe server
-        $fileLimitUpload = 5000000; //limita de 5 mb per poza
+        $fileLimitUpload = 6000000; //limita de 5 mb per poza
 
         $mimeType = mime_content_type($tmpfilename);//stochez MIME type-ul fisierului
         //aici trebuie facute niste validari
-        if ($mimeType != "image/png" && $mimeType != "image/jpg" && $mimeType != "image/jpeg")//daca nu e de tip imagine
+        if ($mimeType != "image/png" && $mimeType != "image/jpg" && $mimeType != "image/jpeg" && $mimeType != "video/mp4" && $mimeType != "video/m4v") //daca nu e de tip imagine sau video
             $upload = 0;
         if ($filesize > $fileLimitUpload)
             $upload = 0;
