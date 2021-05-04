@@ -34,12 +34,25 @@ $("#sendbtn").click(function () {
         processData: false,
         data: dataToSend,                         
         type: 'post',
-        succes: function(){
+        // succes: function(data){
+        //     //document.getElementById("log").innerText = data;
+        //     console.log(data);
+        //     $("textarea").val("");//golim textarea-ul
+        //     document.querySelector("#sendbtn").disabled = true;//disable la buton pt 2 secunde ca sa nu se faca spam
+        //     setTimeout( () => {
+        //         document.querySelector("#sendbtn").disabled = false;//peste 2 sec. dam enable la buton
+        //     }, 2000);
+        // }
+        statusCode: {
+            200:function (data) {
+                document.getElementById("log").innerText = data;
+            console.log(data);
             $("textarea").val("");//golim textarea-ul
             document.querySelector("#sendbtn").disabled = true;//disable la buton pt 2 secunde ca sa nu se faca spam
             setTimeout( () => {
                 document.querySelector("#sendbtn").disabled = false;//peste 2 sec. dam enable la buton
             }, 2000);
+            }
         }
      });
 

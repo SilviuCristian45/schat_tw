@@ -15,8 +15,8 @@ setInterval( () => {
 //request la click pe butonul send prin care inseram mesajul in baza de date 
 $("#sendGlobalChat").click(function(){
     console.log("mesaj trimis pe global chat");
-    let dataToSend = new FormData();
-    let imageData = $("#imagefile").prop('files')[0];
+    let dataToSend = new FormData(); //obiect care ma ajuta sa transmit datele 
+    let imageData = $("#imagefile").prop('files')[0]; //stochez fisierul incarcat in inputul de tip file
 
     //completez formularul "imaginar"
     dataToSend.append('message', $("textarea").val() );
@@ -33,9 +33,14 @@ $("#sendGlobalChat").click(function(){
         type: 'post',
         statusCode: {//a mers asa , nu mergea cu succes 
             200: function (data) {
+                //afisam userului o eroare in caz ca se intampla sa incarce altceva decat o poza
+                document.getElementById("log").innerText = data;
+                //golim textarea-ul pt a-i fie mai usor userului (sa nu mai stearga el vechiul mesaj)
                 $("textarea").val("");
+                //dam disable la button 
                 document.querySelector('#sendGlobalChat').disabled = true;
                 console.log("trebuie dat disable la buton");
+                //reactivam butonul doar dupa 3 secunde (ca sa prevenim spamul)
                 setTimeout( () => {
                     document.querySelector('#sendGlobalChat').disabled = false;
                 }, 3000); 

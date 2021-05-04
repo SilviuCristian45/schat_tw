@@ -49,6 +49,7 @@
         
         <p> Chat global - SCHAT 😀 </p>
         <p> Bun venit pe chat, draga <?php echo '<b>'.$result["username"].'</b>'; ?> </p>
+        <p id="log"> </p>
         <div class="row" id="chatsections"> 
             <section id="chatsection">
                 Teo(moderator) : salutare tuturor

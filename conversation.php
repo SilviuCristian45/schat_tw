@@ -41,6 +41,7 @@
         </div>
         
         <p> Chat direct - <?php echo $result["username"]; ?> </p>
+        <p id="log"> </p>
         <p id="ss">  <?php echo $userto; ?> </p>
         <div class="row" id="chatsections"> 
             <section id="chatsection"></section>
