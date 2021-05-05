@@ -38,7 +38,7 @@
                 
             </section>
             <section id="chatsendsection">
-                <textarea placeholder="Your message here"> </textarea>
+                <textarea> </textarea>
                 <button> Send </button>
             </section>
         </div>

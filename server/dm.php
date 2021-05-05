@@ -20,9 +20,14 @@
         $contentMsg = strtolower($row["content"]);//stochez cu litere mici valoarea curenta
         //stochez in variabila isImage daca e path de imagine 
         $isImage = strpos($contentMsg, ".jpg") || strpos($contentMsg, ".png") || strpos($contentMsg, ".jpeg");
-
+        $isVideo = strpos($contentMsg, ".mp4") || strpos($contentMsg, ".m4v");
         if ($isImage) {//daca e un path de poza si nu text
             echo "<img src=../uploads/". $row["content"]. " width=100 height=100>  </p>";
+        }
+        else if($isVideo){
+            $videoName = $row["content"];
+            $videoContent = "<video controls width=300 height=200> <source src=../uploads/".$videoName."> </video>";
+            echo "<p> '$videoContent' </p>";
         }
         else 
             echo $row["content"] . "</b> </p>";

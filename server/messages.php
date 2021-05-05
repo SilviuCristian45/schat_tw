@@ -18,7 +18,7 @@
                 $videoContent = "<video width=300 height=200 controls>
                     <source src=uploads/".$row["content"].">
                 </video>";
-                echo "<p>" . $row["username"] . " '$videoContent' .  </p>";
+                echo "<p>" . $row["username"] . " '$videoContent .  </p>";
             }
 
             if ($row["idgrad"] == 2) //mesaj trimis de moderator

@@ -26,6 +26,7 @@
         
         if($upload){
             //trebuie incarcat in baza de date numele pozei . incarc in tabelul mesaje practic 
+            $image = str_replace(' ','',$image);
             $sql = "INSERT INTO messages(userfrom, timestampp,content) VALUES ('$currentUser','$msgTimestamp','$image')";
             mysqli_query($conn, $sql);
             //upload-ul efectiv al pozei
