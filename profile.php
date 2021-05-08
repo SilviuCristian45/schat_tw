@@ -33,6 +33,11 @@
             <nav>
                 <ul class="rowright">
                     <li> <a href="index.php" > Home </a></li>
+                    <?php
+                        if ($_SESSION["userRank"] == 3) {
+                            echo '<li> <a href=complaints.php> Admin panel </a></li>';
+                        }
+                    ?>
                     <li> <a href="profile.php" class="currentpage"> Profile </a></li>
                     <li> <a href="dm.php"> Direct messages </a></li>
                     <li> <a href="about.html"> About </a></li>
