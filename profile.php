@@ -37,6 +37,7 @@
                     <li> <a href="dm.php"> Direct messages </a></li>
                     <li> <a href="about.html"> About </a></li>
                     <li> <a href="contact.php"> Contact </a></li>
+                    <li> <a href="logout.php"> Logout </a></li>
                 </ul>
             </nav>
         </div>

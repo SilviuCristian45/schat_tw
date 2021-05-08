@@ -13,8 +13,10 @@
 
     //daca deja exista username-ul in baza de date
     if(mysqli_num_rows($result)) die("Inregistrare esuata deoarece acest username deja exista");
-     
-    $sql = "INSERT INTO users(username, password, idgrad) VALUES ('$username','$password',1);";
+    
+    $passwordHash = password_hash($password, PASSWORD_DEFAULT);
+    
+    $sql = "INSERT INTO users(username, password, idgrad) VALUES ('$username','$passwordHash',1);";
     mysqli_query($conn, $sql);
 
     $sql = "SELECT id from users where username = '$username'";

@@ -1,7 +1,7 @@
 <?php
     require 'config.php';
     
-    $sql = "SELECT messages.content,users.username,users.idgrad FROM messages INNER JOIN users on messages.userfrom = users.id ORDER BY messages.timestampp DESC";
+    $sql = "SELECT messages.timestampp,messages.content,users.username,users.idgrad FROM messages INNER JOIN users on messages.userfrom = users.id ORDER BY messages.timestampp DESC";
     $result = mysqli_query($conn, $sql);
     
     if (mysqli_num_rows($result) > 0) {
@@ -18,15 +18,15 @@
                 $videoContent = "<video width=300 height=200 controls>
                     <source src=uploads/".$row["content"].">
                 </video>";
-                echo "<p>" . $row["username"] . " '$videoContent .  </p>";
+                echo "<p> (" . $row["timestampp"] . ") ". $row["username"] . " '$videoContent .  </p>";
             }
 
             if ($row["idgrad"] == 2) //mesaj trimis de moderator
-                echo '<p style="color: #d8b41f "> (Moderator) '. $row["username"]. " : " . $row["content"]. "</p>";
+                echo '<p style="color: #d8b41f "> (Moderator) ('. $row["timestampp"] . ") ". $row["username"]. " : " . $row["content"]. "</p>";
             else if ($row["idgrad"] == 3) //mesaj trimis de admin
-                echo '<p style="color: #17eae4 "> (Admin) '. $row["username"]. " : " . $row["content"]. "</p>";
+                echo '<p style="color: #17eae4 "> (Admin) ('. $row["timestampp"] . ") ". $row["username"]. " : " . $row["content"]. "</p>";
             else 
-                echo "<p> ". $row["username"]. " : " . $row["content"]. "</p>";
+                echo "<p> (". $row["timestampp"] . ")  ".$row["username"]. " : " . $row["content"]. "</p>";
         }
     } else {
     echo "0 results";

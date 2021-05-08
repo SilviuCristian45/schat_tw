@@ -9,8 +9,9 @@
 
     $sql = "SELECT * FROM users where username = '$username';";
     $result = mysqli_fetch_assoc(mysqli_query($conn, $sql));
-
-    if ($result["password"] == $password) {//daca parolele sunt bune
+    
+    //daca ce e in baza de date corespunde cu hash-ul a ceea ce a introdus userul in formular ,logam
+    if (password_verify($password, $result["password"]) ) {
         session_start();
         $_SESSION["userid"] = $result["id"];
         header("Location:../index.php");

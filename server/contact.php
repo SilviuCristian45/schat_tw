@@ -10,6 +10,6 @@
     mysqli_query($conn, $sql) or die("Problema la trimitere. ");
 
     //setam niste cookieuri pentru a afisa dupa daca s-a executat cu succes query-ul
-    setcookie("mesajcontact","Fisier incarcat cu succes",time() + (86400 * 30), "/");
+    setcookie("mesajcontact","Problema dumneavoastra a fost trimisa. Va multumim !",time() + (86400 * 30), "/");
     header('Location: ../contact.php');
 ?>

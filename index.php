@@ -27,10 +27,8 @@
     integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk="
     crossorigin="anonymous"></script>
 
-
     <script src="js/index.js" defer></script>
     <script src="js/chatglobal.js" defer></script>
-    
 </head>
 <body>
     <div id=container>
@@ -43,6 +41,7 @@
                     <li> <a href="dm.php"> Direct messages </a></li>
                     <li> <a href="about.html"> About </a></li>
                     <li> <a href="contact.php"> Contact </a></li>
+                    <li> <a href="logout.php"> Logout </a></li>
                 </ul>
             </nav>
         </div>
