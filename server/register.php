@@ -25,5 +25,6 @@
     //deschidem sesiunea utilizatorului si o setam
     session_start();
     $_SESSION["userid"] = $result["id"];
+    $_SESSION["userRank"] = 1;//oricine abia inregistrat are gradul cu id 1 (normal)
     header("Location:../index.php");
 ?>

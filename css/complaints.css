@@ -9,3 +9,21 @@ tr:nth-child(even) {
 th,td{
     border:1px solid black;
 }
+
+h2{
+    text-align: center;
+}
+
+@media screen and (max-width: 555px) {
+    .tabletColumn{
+        display: none;
+    }
+}
+
+@media screen and (max-width: 467px) {
+    .smalltabletColumn{
+        display: none;
+    }
+}
+  
+  

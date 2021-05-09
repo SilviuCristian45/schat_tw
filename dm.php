@@ -3,7 +3,7 @@
     session_start();
 
     if (!isset($_SESSION["userid"])) {//daca nu suntem logati nu putem vedea lista de conversatii 
-        header("Location:login.html");
+        header("Location:login.php");
     }
     else {
         

@@ -11,6 +11,6 @@
             $params["secure"], $params["httponly"]
         );
     }
-    //redirectam userul pe index (pe urma va fi redirectat pe login.html )
+    //redirectam userul pe index (pe urma va fi redirectat pe login.php )
     header("Location: index.php");
 ?>

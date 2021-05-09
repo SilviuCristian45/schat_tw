@@ -2,7 +2,7 @@
     session_start();
 
     if(!isset($_SESSION["userid"]))//daca nu e logat
-        header("Location:login.html");//redirectam la login.html
+        header("Location:login.php");//redirectam la login.php
     else{
         require 'server/config.php';
         $sql = "SELECT idgrad from users where users.id = ".$_SESSION["userid"];
@@ -11,7 +11,6 @@
             header("Location:index.php");
         }
     }
-
 ?>
 
 <!DOCTYPE html>
@@ -42,9 +41,8 @@
                 <ul class="rowright">
                     <li> <a href="index.php"> Home </a></li>
                     <?php
-                        if ($_SESSION["userRank"] == 3) {
+                        if ($_SESSION["userRank"] == 3)
                             echo '<li> <a href=complaints.php> Admin panel </a></li>';
-                        }
                     ?>
                     <li> <a href="profile.php" > Profile </a></li>
                     <li> <a href="dm.php"> Direct messages </a></li>
@@ -61,9 +59,9 @@
             <section>
                <table>
                 <tr>
-                    <th> Mail utilzator </th>
+                    <th class=smalltabletColumn> Mail utilzator </th>
                     <th> Continut mesaj </th>
-                    <th> Timestamp </th>
+                    <th class=tabletColumn> Timestamp </th>
                     <th> Done </th>
                 </tr>
                 <?php
@@ -73,8 +71,8 @@
                 
                     while ($row = mysqli_fetch_assoc($result)) {
                         echo "<tr>";
-                        echo "<td>" . $row["email"] . "</td>" . "<td>" . $row["content"] . "</td>";
-                        echo "<td>" . $row["timestampp"] . "</td>";
+                        echo "<td class=smalltabletColumn>" . $row["email"] . "</td>" . "<td>" . $row["content"] . "</td>";
+                        echo "<td class=tabletColumn>" . $row["timestampp"] . "</td>";
 
                         echo  "<td>";
                         if ($row["done"]) 

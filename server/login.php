@@ -18,6 +18,7 @@
         header("Location:../index.php");
     }
     else {
-        echo "Eroare . Parola sau username incorecte";
+        setcookie("mesajparola","Eroare . Parola sau username incorecte",time() + (86400 * 30), "/");
+        header('Location:../login.php');
     }    
 ?>

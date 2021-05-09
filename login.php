@@ -34,6 +34,13 @@
         
         <div class="column row" id=chatsections> 
             <p> Login </p>
+            <p> <?php 
+                    if (isset($_COOKIE["mesajparola"])) {
+                        echo $_COOKIE["mesajparola"];
+                        setcookie("mesajparola","",time() - 3600,"/");//stergem cookie-ul
+                    }
+                ?>
+            </p>
             <section>
                 <form action="server/login.php" method="post">
                    

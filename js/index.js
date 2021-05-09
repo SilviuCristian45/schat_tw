@@ -10,12 +10,12 @@ window.onresize = ManageNavBarButton;//manage-uim butonul si navbarmobile-ul si 
 window.onload = ManageNavBarButton;//manage-uim butonul si navbarmobile-ul si la loading-ul paginii
 
 function ManageNavBarButton() {
-    if (screen.width < 594 && button.style.display == 'none'){
+    if (screen.width < 870 && button.style.display == 'none'){
         console.log('lasam buton sa se vada');
         navbar.style.display = 'none';
         button.style.display = '';
     }
-    if (screen.width > 594 && button.style.display == ''){
+    if (screen.width > 870 && button.style.display == ''){
         console.log('ascundem buton si navbarMobile daca e deschis');
         button.style.display = 'none';
         navbar.style.display = '';
@@ -59,13 +59,13 @@ function DisplayNavbarMobile() {
 
 //tranzitii cu jquery intre pagini 
 $("a").click(function(e){
-    // e.preventDefault();//oprim comportamentul default la click-ul pe link
-    // let link =  $(this).attr('href');
-    // console.log(link);
-    // $("body").fadeOut("fast" , function() {//facem tot body-ul invisible
-    //     console.log("fade out complete");//pe urma trecem la link 
-    //     window.location = link;
-    // });  
+    e.preventDefault();//oprim comportamentul default la click-ul pe link
+    let link =  $(this).attr('href');
+    console.log(link);
+    $("body").fadeOut("fast" , function() {//facem tot body-ul invisible
+        console.log("fade out complete");//pe urma trecem la link 
+        window.location = link;
+    });  
 });
 
 //cand se incarca orice pagina avem un fade in pe body 

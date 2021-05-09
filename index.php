@@ -1,7 +1,7 @@
 <?php
     session_start();
-    if ( !isset($_SESSION["userid"]) ){//daca user-ul nu e logat # trebuie redirectat pe login.html
-        header("Location:login.html");
+    if ( !isset($_SESSION["userid"]) ){//daca user-ul nu e logat # trebuie redirectat pe login.php
+        header("Location:login.php");
     }
     else{
         require 'server/config.php';
@@ -38,9 +38,8 @@
                 <ul class="rowright">
                     <li> <a href="index.php" class="currentpage"> Home </a></li>
                     <?php
-                        if ($_SESSION["userRank"] == 3) {
+                        if ($_SESSION["userRank"] == 3)
                             echo '<li> <a href=complaints.php> Admin panel </a></li>';
-                        }
                     ?>
                     <li> <a href="profile.php"> Profile </a></li>
                     <li> <a href="dm.php"> Direct messages </a></li>
