@@ -1,5 +1,4 @@
 <!--  In aceasta pagina ma ocup de display-ul conversatiei userului curent cu un anumit user -->
-
 <?php
     require "server/config.php";
     $userto = $_GET["userto"];
@@ -33,9 +32,9 @@
                 <ul class="rowright">
                     <li> <a href="../index.php"> Home </a></li>
                     <?php
-                        if ($_SESSION["userRank"] == 3) {
-                            echo '<li> <a href=../complaints.php> Admin panel </a></li>';
-                        }
+                         if(isset($_SESSION["userRank"]))
+                             if ($_SESSION["userRank"] == 3) 
+                                 echo '<li> <a href=../complaints.php> Admin panel </a></li>';
                     ?>
                     <li> <a href="../profile.php"> Profile </a></li>
                     <li> <a href="../dm.php"> Direct messages </a></li>

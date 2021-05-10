@@ -53,8 +53,6 @@
             <section>
                 <?php
                     echo "<p> <b> Nume de utilizator </b> : " . $result["username"] . "</p>";
-                    echo "<p> <b> Parola : </b>" . $result["password"] . "</p>";
-                    //echo "<p>" . $result["idgrad"] . "</p>"; nu afisez gradul 
                     $sql = "SELECT * FROM ranks WHERE ranks.id = " . $result["idgrad"] ;
                     $result = mysqli_fetch_assoc( mysqli_query($conn, $sql) );
                     echo "<p> <b> Grad pe SCHAT : </b> " . $result["name"] . "</p>";

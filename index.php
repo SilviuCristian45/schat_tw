@@ -1,7 +1,7 @@
 <?php
     session_start();
     if ( !isset($_SESSION["userid"]) ){//daca user-ul nu e logat # trebuie redirectat pe login.php
-        header("Location:login.php");
+        header("location:login.php");
     }
     else{
         require 'server/config.php';

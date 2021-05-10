@@ -56,6 +56,9 @@ $("#sendGlobalChat").click(function(){
                 setTimeout( () => {
                     document.querySelector('#sendGlobalChat').disabled = false;
                 }, 3000); 
+                //golim file inputul 
+                $("#imagefile").val(""); 
+
             }
         }
      });

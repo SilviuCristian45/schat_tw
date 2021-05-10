@@ -25,7 +25,7 @@
                 echo '<p style="color: #d8b41f "> (Moderator) ('. $row["timestampp"] . ") ". $row["username"]. " : " . $row["content"]. "</p>";
             else if ($row["idgrad"] == 3) //mesaj trimis de admin
                 echo '<p style="color: #17eae4 "> (Admin) ('. $row["timestampp"] . ") ". $row["username"]. " : " . $row["content"]. "</p>";
-            else 
+            else if (!$isVideo && !$isImage)
                 echo "<p> (". $row["timestampp"] . ")  ".$row["username"]. " : " . $row["content"]. "</p>";
         }
     } else {
