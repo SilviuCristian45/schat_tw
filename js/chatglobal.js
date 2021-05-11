@@ -1,27 +1,42 @@
 let chatbox = document.getElementById("chatsection"); 
 
-Object.defineProperty(HTMLMediaElement.prototype, 'playing', {
-    get: function(){
-        return !!(this.currentTime > 0 && !this.paused && !this.ended && this.readyState > 2);
+//Trimitem requestul intial pentru a scoate toate mesajele 
+let xhttp = new XMLHttpRequest();
+xhttp.onreadystatechange = function() {//la terminarea request-ului asignam functia aceasta
+    if (this.readyState == 4 && this.status == 200) {//daca avem ok-ul de la server ca s-a primit request-ul
+        $("#chatsection").prepend(this.response);
     }
-})
+};
+xhttp.open("GET", "server/messages.php", true);//deschidem request-ul 
+xhttp.send();//trimitem request-ul la server
 
-//repetam acest request la fiecare 5 secunde si luam asincron din baza de date mesajele 
+//repetam acest request la fiecare 5 secunde si luam asincron din baza de date mesajele si facem append
 setInterval( () => {
+    //let currentTime = new Date().toISOString().slice(0, 19).replace('T', ' ');
+    //console.log(currentTime);
     let xhttp = new XMLHttpRequest();
     xhttp.onreadystatechange = function() {//la terminarea request-ului asignam functia aceasta
         if (this.readyState == 4 && this.status == 200) {//daca avem ok-ul de la server ca s-a primit request-ul
-            let video = document.querySelector("video") ?? undefined;
-            if(video){//daca avem clipuri in pagina
-                if (!video.playing)//daca nu se da play la ele 
-                    chatbox.innerHTML = this.response;//punem raspunsul (lista de mesaje) in chatbox
-            }
-            else//daca nu avem clipuri in pagina logic ca facem update la content 
-                chatbox.innerHTML = this.response;
+            $("#chatsection").prepend(this.response);
         }
     };
-    xhttp.open("GET", "server/messages.php", true);//deschidem request-ul 
-    xhttp.send();//trimitem request-ul la server
+    let lastMessageTimestampp;
+    let timestamp;
+    //trebuie trimis timestampul ultimului mesaj din DOM
+    if((document.getElementById("chatsection") ).innerHTML.indexOf("<p>") >= 0){
+        console.log("valoarea p " + $("#chatsection p:first-child").text());
+        lastMessageTimestampp = $("#chatsection p:first-child").text();
+        //luam timestamp din string ce e intre paranteze
+        let p1 = lastMessageTimestampp.indexOf('(');
+        let p2 = lastMessageTimestampp.indexOf(')');
+        timestamp = lastMessageTimestampp.substr(p1+1,p2-2);
+        console.log(timestamp);
+    }
+    //console.log(lastMessageTimestampp); 
+    if(timestamp){
+        xhttp.open("GET", "server/messages.php?currentTime="+timestamp, true);//deschidem request-ul 
+        xhttp.send();//trimitem request-ul la server
+    }
 } , 5000)
 
 //request la click pe butonul send prin care inseram mesajul in baza de date 
