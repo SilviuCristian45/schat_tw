@@ -5,6 +5,7 @@ let xhttp = new XMLHttpRequest();
 xhttp.onreadystatechange = function() {//la terminarea request-ului asignam functia aceasta
     if (this.readyState == 4 && this.status == 200) {//daca avem ok-ul de la server ca s-a primit request-ul
         $("#chatsection").prepend(this.response);
+        //console.log(this.response);
     }
 };
 xhttp.open("GET", "server/messages.php", true);//deschidem request-ul 
@@ -24,13 +25,13 @@ setInterval( () => {
     let timestamp;
     //trebuie trimis timestampul ultimului mesaj din DOM
     if((document.getElementById("chatsection") ).innerHTML.indexOf("<p>") >= 0){
-        console.log("valoarea p " + $("#chatsection p:first-child").text());
+        console.log("ultimul mesaj din DOM" + $("#chatsection p:first-child").text());
         lastMessageTimestampp = $("#chatsection p:first-child").text();
         //luam timestamp din string ce e intre paranteze
         let p1 = lastMessageTimestampp.indexOf('(');
         let p2 = lastMessageTimestampp.indexOf(')');
         timestamp = lastMessageTimestampp.substr(p1+1,p2-2);
-        console.log(timestamp);
+        console.log("cu timestamp : " + timestamp);
     }
     //console.log(lastMessageTimestampp); 
     if(timestamp){
@@ -48,7 +49,11 @@ $("#sendGlobalChat").click(function(){
     //completez formularul "imaginar"
     dataToSend.append('message', $("textarea").val() );
     dataToSend.append('timestampp', new Date().toISOString().slice(0, 19).replace('T', ' ') );
+    console.log(new Date().toISOString().slice(0, 19).replace('T', ' '));
     dataToSend.append('fileToUpload', imageData);
+
+    let date = new Date().toLocaleString();
+    console.log("data mesaj " + date);
 
     //trimitem request-ul 
     $.ajax({
@@ -66,14 +71,13 @@ $("#sendGlobalChat").click(function(){
                 $("textarea").val("");
                 //dam disable la button 
                 document.querySelector('#sendGlobalChat').disabled = true;
-                console.log("trebuie dat disable la buton");
+                //console.log("trebuie dat disable la buton");
                 //reactivam butonul doar dupa 3 secunde (ca sa prevenim spamul)
                 setTimeout( () => {
                     document.querySelector('#sendGlobalChat').disabled = false;
                 }, 3000); 
                 //golim file inputul 
                 $("#imagefile").val(""); 
-
             }
         }
      });

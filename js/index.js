@@ -18,7 +18,7 @@ function ManageNavBarButton() {
     if (screen.width > 870 && button.style.display == ''){
         console.log('ascundem buton si navbarMobile daca e deschis');
         button.style.display = 'none';
-        navbar.style.display = '';
+        navbar.style.display = '';//afisam navbarul
         if (navbarMobile.style.display == '')//daca navbarMobile a ramas pornit
             navbarMobile.style.display = 'none';
     }

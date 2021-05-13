@@ -1,17 +1,21 @@
 <?php
     require 'config.php';
     
-    if(isset($_GET["currentTime"]))//daca s-a trimis timestampului ultimului mesaj afisat
+    if(isset($_GET["currentTime"])){//daca s-a trimis timestampului ultimului mesaj afisat
         $currentTime = $_GET["currentTime"];
+        $currentTime = date_create($currentTime);
+    }
     else $currentTime = "0";
+   
     $sql = "SELECT messages.timestampp,messages.id,messages.content,users.username,users.idgrad FROM messages INNER JOIN users on messages.userfrom = users.id ORDER BY messages.timestampp DESC";
     $result = mysqli_query($conn, $sql);
     
-    
     if (mysqli_num_rows($result) > 0) {
         // output data of each row
-        while($row = mysqli_fetch_assoc($result)) {
-            if($row["timestampp"] > $currentTime){//daca au aparut mesaje fata de ultimul
+        while($row = mysqli_fetch_assoc($result) ) {
+            $dateDB = date_create($row["timestampp"]);
+            //echo $dateDB . '<br>';
+            if($dateDB > $currentTime || $currentTime == "0"){//daca au aparut mesaje fata de ultimul
                 $contentMsg = strtolower($row["content"]);//stochez cu litere mici valoarea curenta
                 //stochez in variabila isImage daca e path de imagine 
                 $isImage = strpos($contentMsg, ".jpg") || strpos($contentMsg, ".png") || strpos($contentMsg, ".jpeg");
